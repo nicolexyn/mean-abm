@@ -1,0 +1,38 @@
+<h2>Listado de Productos</h2>
+<hr>
+<button type="button" class="btn btn-primary" ng-click="agregarProducto()">Nuevo Producto</button>
+<div class="row" style="margin-top: 20px;">
+    <div class="col-md-12 text-center" ng-show="!productos.length">
+        <div class="alert alert-info">No hay productos para mostrar, debes crear uno nuevo.</div>
+    </div>
+    <div class="col-md-12" ng-show="productos.length">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>
+                        <a href="" ng-click="ordenarPor('nombre')">Nombre</a>
+                        <span class="caret" style="cursor: pointer" ng-click="ordenarPor('-nombre')"></span>
+                    </th>
+                    <th>Precio</th>
+                    <th>Categoria</th>
+                    <th>Descripcion</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="producto in productos | orderBy:ordenSeleccionado | filter:buscar">
+                    <td><img src="{{producto.image}}" class="img-responsive"></td>
+                    <td>{{producto.name | uppercase}}</td>
+                    <td>{{producto.price | currency}}</td>
+                    <td>{{producto.category}}</td>
+                    <td>{{producto.description}}</td>
+                    <td>
+                        <button type="button" class="btn btn-info btn-xs" ng-click="editarProducto(producto)"><i class="glyphicon glyphicon-pencil"></i></button>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="eliminarProducto(producto)"><i class="glyphicon glyphicon-remove"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
