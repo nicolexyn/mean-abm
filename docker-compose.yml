@@ -1,0 +1,11 @@
+web:
+  build: .
+  ports:
+    - "80:3000"
+  volumes:
+    - .:/app
+  links:
+    - db
+
+db:
+  image: mongo:latest
